@@ -1,5 +1,7 @@
 # weather-app
 
+basic weather app using vue to run get api key from https://openweathermap.org/ and change the key in dashboard
+
 ## Project setup
 ```
 npm install
