@@ -21,13 +21,13 @@ export default {
   },
   mounted () {
     axios
-      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location}&appid=e49e37641b6627a6869493a916c5a573`)
+      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location}&appid=${key}`)
       .then(response => (this.weather = response.data))
   },
   methods: {
     clicked: function() {
     axios
-      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location}&appid=e49e37641b6627a6869493a916c5a573`)
+      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location}&appid=${key}`)
       .then(response => (this.weather = response.data))
         }
     }
