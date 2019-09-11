@@ -1,28 +1,54 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Dashboard :function="clicked" :location="location" :weather="weather"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Dashboard from './components/Dashboard.vue'
+import axios from 'axios';
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    Dashboard
+  },
+  data () {
+    return {
+      location: "London",
+      weather: {}
+    }
+  },
+  mounted () {
+    axios
+      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location}&appid=e49e37641b6627a6869493a916c5a573`)
+      .then(response => (this.weather = response.data))
+  },
+  methods: {
+    clicked: function() {
+    axios
+      .get(`http://api.openweathermap.org/data/2.5/forecast?q=${this.location}&appid=e49e37641b6627a6869493a916c5a573`)
+      .then(response => (this.weather = response.data))
+        }
+    }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @font-face {
+  font-family: Gotham Light;
+  src: url('./assets/Fonts/gotham light/Gotham-Light.otf') format("opentype");
+  }
+  @font-face {
+  font-family: 'Gotham Black';
+  src: url('./assets/Fonts/gotham black/GOTHAM-BLACK.TTF') format("truetype");
+  }
+  #app {
+    font-family: 'Gotham Light', 'Gotham Black';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 0px;
+  }
 </style>
